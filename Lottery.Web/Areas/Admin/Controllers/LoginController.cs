@@ -37,7 +37,6 @@ namespace Lottery.Web.Areas.Admin.Controllers
                     Session["AdminInfo"] = admininfo;
                     result.Data = new { succeed = 1, msg = "登录成功" };
                     return result;
-                    //return RedirectToAction("Index", "/Home/");
                 }
                 else
                 {
