@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "RoleForm";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+
+@model Lottery.Web.Areas.Admin.Models.Role
+
+<!-- Horizontal Form -->
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title" style="font-family:'Microsoft YaHei'">角色添加</h3>
+    </div><!-- /.box-header -->
+    <!-- form start -->
+    @using (Ajax.BeginForm("AddRole", null, new AjaxOptions { HttpMethod = "post", OnSuccess = "afterAddRole" }, new { @class = "form-horizontal" }))
+    {
+        <div class="box-body">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label" style="width:12%">角色名：</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.RoleName, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="RoleDesc" class="col-sm-2 control-label" style="width:12%">角色描述：</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.RoleDesc, new { @class = "form-control" })
+                </div>
+            </div>
+        </div><!-- /.box-body -->
+        <div class="box-footer">
+            <label class="col-sm-2 control-label" style="width:12%">&nbsp;</label>
+            <button type="submit" class="btn btn-primary">提交</button>
+        </div><!-- /.box-footer -->
+    }
+</div><!-- /.box -->
+
+<!-- Modal -->
+<div class="modal fade" id="role-modal" tabindex="-1" role="dialog" aria-labelledby="rolemodal">
+    <div class="modal-dialog modal-sm" role="document" style="margin-top:300px;">
+        <div class="modal-content">
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section script{
+    <script src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        //回调函数
+        function afterAddRole(serverData) {
+            if (serverData.succeed == 1) {
+                //window.location.href = '/Admin/Role/Index'; //角色添加成功
+
+                $(".modal-body").text(serverData.msg);
+                $("#role-modal").modal();
+                setTimeout(function () { window.location.href = '/Admin/Role/Index'; },"1000")
+            }
+            //添加失败
+            if (serverData.succeed < 0) {
+                $(".modal-body").text(serverData.msg);
+                $("#role-modal").modal();
+            }
+        }
+    </script>
+}

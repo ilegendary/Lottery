@@ -1,0 +1,63 @@
+﻿@model Lottery.Web.Models.LoginViewModel
+@using Lottery.Common
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>登录页面</title>
+    <link href="~/Content/css/common.css" type="text/css" rel="stylesheet" />
+    <link href="~/Content/css/login.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Content/js/jquery-1.4.2.min.js"></script>
+</head>
+
+<body>
+    <!--S header-->
+    <div class="login-header">
+        <div class="login-logo">
+            <a href="index.html"><img src="~/Content/images/logo.png" /></a>
+        </div>
+    </div>
+    <!--E header-->
+    <div class="login-content clearfix loadimg" id="registerdiv">
+        <div class="login_form clearfix">
+            <div class="pad_20 clearfix">
+                <h4>登录和谐之家</h4>
+                @using (Html.BeginForm())
+                {
+                    <dl class="login-dl clearfix">
+                        <dt class="dt_l">手机/邮箱：</dt>
+                        <dd class="dd_r clearfix" id="emailInner">
+                            @Html.TextBoxFor(model => model.UserName, new { @class = "input_kuang email", placeholder = "手机/邮箱" })
+                        </dd>
+                        <dt class="dt_l">密码：</dt>
+                        <dd class="dd_r clearfix" id="pwdTd">
+                            @Html.PasswordFor(model => model.LoginPwd, new { @class = "input_kuang email", placeholder = "密码" })
+                        </dd>
+                        <dt class="dt_l">&nbsp;</dt>
+                        <dd class="dd_r clearfix">
+                            <label>@Html.CheckBoxFor(model => model.RemberMe) &nbsp;记住登录密码</label>
+                        </dd>
+                        <dt class="dt_l">&nbsp;</dt>
+                        <dd class="dd_r clearfix">
+                            <input class="btn btn-orange" type="submit" value="登录" name="loginsubmit" />
+                            <a href="forgetpwd.html" style="margin-left:10px;">忘记密码？</a>
+                        </dd>
+                        <dt class="dt_l">&nbsp;</dt>
+                        <dd class="dd_r clearfix" style="margin-top:20px; padding-top:20px; border-top:1px dotted #dfdfdf;">
+                            <a href="register.html" class="w260">立即注册</a>
+                        </dd>
+                    </dl>
+                }
+            </div>
+        </div>
+    </div>
+    <!--S footer-->
+    <div class="login-footer">
+        <div class="copyright">
+            <p>Copyright © 2013 andhome.cc All Rights Reserved.&nbsp;&nbsp;河南和谐之家&nbsp;&nbsp;版权所有&nbsp;&nbsp;粤ICP备14054649号</p>
+        </div>
+    </div>
+    <!--E footer-->
+</body>
+</html>
