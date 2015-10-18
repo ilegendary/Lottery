@@ -34,7 +34,8 @@ namespace Lottery.Web.Areas.Admin.Controllers
                 AdminInfo admininfo = AdminInfoService.LoadEntities(x => x.AdminLoginName == model.AdminLoginName & x.LoginPwd == model.LoginPwd).FirstOrDefault();
                 if (admininfo != null)
                 {
-                    Session["AdminInfo"] = admininfo;
+                    //把登录信息写到Session中
+                    Session["AdminUserInfo"] = admininfo;
                     result.Data = new { succeed = 1, msg = "登录成功" };
                     return result;
                 }
